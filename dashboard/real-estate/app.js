@@ -42,7 +42,8 @@ const ICON_KEYS={airports:"airports",runways:"runways",road_length_miles:"roads"
 const STAT_ICONS={airports:"airports",runways:"runways",road_length_miles:"roads",building_permits_latest:"permits",hpi_latest:"hpi",transit_ridership_upt:"transit",vehicle_miles_millions:"roads",transit_agencies:"transit",population:"permits"};
 
 const MAP_COLORS=["#e8f0fe","#c5dafb","#9bbef5","#6d9eeb","#4285f4","#2a75e0","#1a5bd6","#0c447c"];
-function getColorForValue(t){t=Math.max(0,Math.min(1,t));const idx=Math.min(Math.floor(t*(MAP_COLORS.length-1)),MAP_COLORS.length-2);const localT=(t*(MAP_COLORS.length-1))-idx;return interpolateColor(MAP_COLORS[idx],MAP_COLORS[idx+1],localT)}
+const METRIC_SCALES={hpi_latest:MAP_COLORS,airports:["#e6f7f1","#b5ead9","#7fd9bc","#4fc49c","#0f9d6c","#0b8060","#096b51","#064d3a"],building_permits_latest:["#fef6e3","#fbe7b8","#f7d588","#f5c354","#f5b02e","#d99511","#a86f0c","#7a5009"],road_length_miles:["#f1ecfe","#ddd2fc","#c4b4f9","#a58df6","#8b5cf6","#6d3fd9","#5430b0","#3c2180"],transit_ridership_upt:["#fee9ea","#fcbfc3","#f78d94","#ef5560","#e00010","#b8000d","#8f000a","#660007"]};
+function getColorForValue(metric,t){t=Math.max(0,Math.min(1,t));const scale=METRIC_SCALES[metric]||MAP_COLORS;const idx=Math.min(Math.floor(t*(scale.length-1)),scale.length-2);const localT=(t*(scale.length-1))-idx;return interpolateColor(scale[idx],scale[idx+1],localT)}
 function interpolateColor(c1,c2,t){const r1=parseInt(c1.slice(1,3),16),g1=parseInt(c1.slice(3,5),16),b1=parseInt(c1.slice(5,7),16);const r2=parseInt(c2.slice(1,3),16),g2=parseInt(c2.slice(3,5),16),b2=parseInt(c2.slice(5,7),16);const r=Math.round(r1+(r2-r1)*t),g=Math.round(g1+(g2-g1)*t),b=Math.round(b1+(b2-b1)*t);return"rgb("+r+","+g+","+b+")"}
 
 function StatePicker({states,selected,onSelect,open,onToggle}){
@@ -97,9 +98,10 @@ function KPICards({summary}){
 
 function ColorLegend({metric}){
   var col=METRIC_COLORS[metric]||"#1a5bd6";
-  var grad="linear-gradient(to right,"+MAP_COLORS[0]+","+MAP_COLORS[MAP_COLORS.length-1]+")";
+  var scale=METRIC_SCALES[metric]||MAP_COLORS;
+  var grad="linear-gradient(to right,"+scale.join(",")+")";
   return React.createElement("div",{className:"map-legend"},
-    React.createElement("span",{style:{fontSize:"0.68rem",color:"var(--color-text-dim)",fontFamily:"var(--font-display)"}},METRIC_LABELS[metric]),
+    React.createElement("span",{style:{fontSize:"0.68rem",color:col,fontFamily:"var(--font-display)",fontWeight:600}},METRIC_LABELS[metric]),
     React.createElement("div",{style:{display:"flex",flexDirection:"column",gap:2}},
       React.createElement("div",{className:"map-legend-bar",style:{background:grad}}),
       React.createElement("div",{className:"map-legend-labels"},
@@ -178,7 +180,7 @@ function USMap({states,metric,selectedState,onSelect,onHover}){
       if(!s){p.style.fill="#ccc";return}
       var val=s[metricKey]||0;
       var t=max===min?0.5:(val-min)/(max-min);
-      p.style.fill=getColorForValue(t);
+      p.style.fill=getColorForValue(metricKey,t);
       p.classList.toggle("selected",abbr===selectedState);
     });
   },[states,metricKey,selectedState]);

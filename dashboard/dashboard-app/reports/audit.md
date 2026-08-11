@@ -1,7 +1,7 @@
 # America250 Data Warehouse — Audit Report
 
-**Generated:** 2026-07-29T06:09:17.704Z
-**Elapsed:** 0.5s
+**Generated:** 2026-08-11T05:13:06.911Z
+**Elapsed:** 0.7s
 **Overall:** ❌ FAIL
 
 ## Results
@@ -9,13 +9,13 @@
 | Verifier | Status | Time |
 |----------|--------|------|
 | Repository Health | ✅ PASS | 0.1s |
-| Raw Data Integrity | ✅ PASS | 0.1s |
+| Raw Data Integrity | ❌ FAIL | 0.1s |
 | Module Metadata | ❌ FAIL | 0.1s |
 | Module Accessors | ✅ PASS | 0.1s |
 | Checksums | ✅ PASS | 0.1s |
 | Data Sources | ✅ PASS | 0.1s |
 | Duplicate Detection | ✅ PASS | 0.1s |
-| Download Scripts | ❌ FAIL | 0.1s |
+| Download Scripts | ❌ FAIL | 0.0s |
 
 ## Details
 
@@ -41,18 +41,18 @@
 
 --- Directory Structure ---
   ok  scripts/ (7 entries)
-  info  raw/ (not found - will be created as needed)
-  info  processed/ (not found - will be created as needed)
+  ok  raw/ (7 entries)
+  ok  processed/ (5 entries)
   info  logs/ (not found - will be created as needed)
   info  core/ (not found - will be created as needed)
-  ok  dashboard/ (9 entries)
+  ok  dashboard/ (8 entries)
 
 --- Dashboard ---
-  ok  src/modules/ (6 entries)
+  ok  src/modules/ (7 entries)
   ok  src/components/ (11 entries)
   ok  verify/ (9 entries)
   ok  templates/ (4 entries)
-  ok  public/ (6 entries)
+  ok  public/ (7 entries)
 
 --- Summary ---
 Issues: 0
@@ -65,7 +65,26 @@ REPOSITORY HEALTHY
 ```
 === Raw Data Verification ===
 
-No raw/ directory found. Skipping.
+  WARN  C:\Users\Admin\Documents\GitHub\ballotdasai\raw\fhwa\hm15_federal_aid_highway_2024.xlsx: Unknown extension: .xlsx (not in allowed list)
+  WARN  C:\Users\Admin\Documents\GitHub\ballotdasai\raw\fhwa\hm20_public_road_length_2024.xlsx: Unknown extension: .xlsx (not in allowed list)
+  WARN  C:\Users\Admin\Documents\GitHub\ballotdasai\raw\fhwa\vm2_vehicle_miles_2024.xlsx: Unknown extension: .xlsx (not in allowed list)
+  WARN  C:\Users\Admin\Documents\GitHub\ballotdasai\raw\ntd\ntd_service_by_agency_2024.csv: Inconsistent column count in first 20 rows (expected 35)
+  WARN  C:\Users\Admin\Documents\GitHub\ballotdasai\raw\ntd\ntd_service_by_mode_2024.csv: Inconsistent column count in first 20 rows (expected 46)
+  WARN  C:\Users\Admin\Documents\GitHub\ballotdasai\raw\transportation\bps_state_units_2015.txt: Contains null bytes - may be binary data saved as text
+  WARN  C:\Users\Admin\Documents\GitHub\ballotdasai\raw\transportation\bps_state_units_2018.txt: Contains null bytes - may be binary data saved as text
+  WARN  C:\Users\Admin\Documents\GitHub\ballotdasai\raw\transportation\bps_state_valuation_2018.txt: Contains null bytes - may be binary data saved as text
+  WARN  C:\Users\Admin\Documents\GitHub\ballotdasai\raw\transportation\building_permits_state_annual_2019.xls: Unknown extension: .xls (not in allowed list)
+  WARN  C:\Users\Admin\Documents\GitHub\ballotdasai\raw\transportation\building_permits_state_annual_2020.xls: Unknown extension: .xls (not in allowed list)
+  WARN  C:\Users\Admin\Documents\GitHub\ballotdasai\raw\transportation\building_permits_state_annual_2021.xls: Unknown extension: .xls (not in allowed list)
+
+--- Summary ---
+Files checked: 19
+Total size: 23.0 MB
+Duplicate groups: None
+Issues: 11
+
+11 ISSUE(S) FOUND
+
 
 ```
 
@@ -82,6 +101,9 @@ No raw/ directory found. Skipping.
 
 --- geography ---
   WARN  raw/geography/ directory does not exist
+
+--- realestate ---
+  info  raw/ contains 1 files
 
 --- Summary ---
 Issues: 3
@@ -167,7 +189,52 @@ Issues: 3
 ```
 === Checksum Generation & Verification ===
 
-No raw/ directory found. Skipping.
+Generated checksums:
+  faa/airport-frequencies.csv
+    SHA-256: 6bc5f7dd9091b348200c464fa154d37aaa3939d1032efd3e64534cc2ed4f2ce1
+    Size: 1.24 MB
+  faa/airports.csv
+    SHA-256: 70a2c7ed3dec17548d752c68a3fefa9d09948bb24fca5a93d2ebc06a4b391e30
+    Size: 12.10 MB
+  faa/runways.csv
+    SHA-256: e7c581e531660b4e69459e993701896827312df9e2e1016be366c054b7e8f57b
+    Size: 3.77 MB
+  fhfa/hpi_at_metro.txt
+    SHA-256: 2c843f501cf029348f728c1ff129a356a4d29ddb59a114321e7661bed1efa502
+    Size: 3.97 MB
+  fhfa/hpi_exp_state.txt
+    SHA-256: d62f1f55474bd372b8de2bc9feb5c6f90a6a53bc924e7f59a467c2ae330dc420
+    Size: 260.9 KB
+  fhfa/hpi_exp_us_and_census.txt
+    SHA-256: 008c8d1bc195e99fb3dbc32e701ef2a1a60667ead27e79c218998a845547de51
+    Size: 40.3 KB
+  fhfa/hpi_po_metro.txt
+    SHA-256: 00204b05242618e6cf317edf80d74560b735bd1f48eafb3fc5c1eacc39f6e25a
+    Size: 803.1 KB
+  fhwa/hm15_federal_aid_highway_2024.xlsx
+    SHA-256: 75949d1b4fdce34b8d63af7e13cec405d87cf5a5e91b5e6d7227d2ecb3bd5d34
+    Size: 33.8 KB
+  fhwa/hm20_public_road_length_2024.xlsx
+    SHA-256: abe81f96d44531d93f9c77f064a70f0061e9fae836f1cdf4040e383da934c000
+    Size: 32.3 KB
+  fhwa/vm2_vehicle_miles_2024.xlsx
+    SHA-256: 01524202944861cc4915f898e3b426aa179f323935bff54b001dbaa9e61067c4
+    Size: 56.4 KB
+  ntd/ntd_service_by_agency_2024.csv
+    SHA-256: 31f72c7f1e883796e006883d97e64949cb1a2def80c1bc592002ccf982a282d1
+    Size: 268.3 KB
+  ntd/ntd_service_by_mode_2024.csv
+    SHA-256: 06aa16f0b1d2ecf482d8dfbc5650997670754f2bb828046013e76545b3a6c0f9
+    Size: 324.7 KB
+  transportation/bps_state_units_2015.txt
+    SHA-256: bc501db31ed6213fec37adaa19cb0e2b705259fa5faa55836608eed1c2bdbf94
+    Size: 5.9 KB
+  transportation/bps_state_units_2018.txt
+    SHA-256: 642b5f865a74e17c5a0a51a39dc2ade0e3e19a62227f7def279e516e3d5e87ab
+    Size: 5.8 KB
+  transportation/bps_state_valuation_2018.txt
+    SHA-256: 95b44c1e8c7b55d0acf4fedbb18be8ea78a9d6befb3e285d48e6065c484d872d
+    Size: 5.9 KB
 
 ```
 
@@ -198,6 +265,12 @@ No raw/ directory found. Skipping.
     - NPS
     - USDA Forest Service
 
+--- realestate ---
+  info  Source: Data: FHFA House Price Index & U.S. Census Bureau Building Permits Survey...
+  info  Data sources: 2 declared
+    - FHFA House Price Index
+    - U.S. Census Bureau Building Permits Survey
+
 --- Summary ---
 Issues: 0
 ALL SOURCES VALID
@@ -209,7 +282,10 @@ ALL SOURCES VALID
 ```
 === Duplicate File Detection ===
 
-No raw/ directory found. Skipping.
+--- Summary ---
+Duplicate groups: 0
+No duplicates found
+Report: reports/duplicate_files.csv
 
 ```
 
