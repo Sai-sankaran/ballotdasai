@@ -14,7 +14,7 @@
 import demographics from './demographics.js'
 import economy from './economy.js'
 import geography from './geography.js'
-// import realestate from './realestate.js'       // Yeswant
+import realestate from './realestate.js'
 // import politics from './politics.js'           // Vishal
 // import agriculture from './agriculture.js'     // Bala
 
@@ -22,7 +22,7 @@ const modules = [
   demographics,
   economy,
   geography,
-  // realestate,                                  // Yeswant
+  realestate,
   // politics,                                    // Vishal
   // agriculture,                                 // Bala
 ]
